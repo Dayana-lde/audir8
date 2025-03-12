@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+  <style>
+   
+    @media (max-width: 768px) {
+      .header {
+        height: 50vh;
+      }
+      .four img {
+        height: 300px;
+      }
+      main {
+        position: relative;
+        height: 30vh; 
+        background-size: 50px;
+        font-size: small; 
+      }
+      section {
+        position: relative;
+        display: flex;
+        justify-content: center; 
+        flex-direction: row;
+        margin: 0;
+      }
+      .slider {
+        height: 50vh;
+      }
+      .slide img {
+        position: relative;
+        width: 100%;
+        height: auto;
+        left: 40px;
+      }
+      .text {
+        font-size: 1.5rem;
+      }
+      .slide h2,
+      .slide p {
+        position: relative;
+        display: inline;
+        font-size: x-small;
+        padding: 30px;
+        gap: 0px;
+      }
+      .navigation {
+        bottom: 10px;
+      }
+    }
+
+    * {
+      font-family: "Times New Roman", Times, serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    nav {
+      text-align: center;
+      font-size: large;
+    }
+    header {
+      background-image: url("dark.jpg");
+    }
+    .header {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 30vh;
+      color: white;
+    }
+    h1,
+    p {
+      margin: 0 auto;
+      max-width: 800px;
+      display: flex;
+      justify-content: center;
+    }
+    .four img {
+      position: relative;
+      width: 100%;
+      height: 700px;
+      border: 20px black solid;
+    }
+    .section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center; 
+      font-size: large;
+      background-color: black;
+      color: white;
+      width: 100%;
+      height: 50vh;
+      padding: 20px;
+    }
+    .js {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 30vh;
+      background-color: black;
+      color: white;
+    }
+    .buttons {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+    #message {
+      margin-top: 10px;
+      font-size: 1.2rem;
+    }
+    .change #changeBackgroundBtn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: black; 
+      color: white; 
+      border: none;
+      cursor: pointer;
+    }
+    .text {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .slider {
+      font-family: Arial, sans-serif;
+      background: #222;
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+   
+    .slider input[type="radio"] {
+      display: none;
+    }
+
+    .slides {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s ease-in-out;
+    }
+   
+    .slide {
+      flex: 1 0 100%;
+      min-width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-direction: row;
+      color: white;
+      font-size: 25px;
+      padding: 10px;
+      gap: 25px;
+      text-shadow: 2px 2px 5px black;
+    }
+    .slide p {
+      gap: 10px;
+      max-width: 700px;
+    }
+    .imgleft {
+      position: relative;
+      float: left;
+      right: 50px;
+    }
+    .slide img {
+      border: 10px black solid;
+      width: 150%;
+      height: 200%;
+    }
+   
+    .slide:nth-child(1) {
+      background: linear-gradient(45deg, #222, #b4132bbd);
+    }
+    .slide:nth-child(2) {
+      background: linear-gradient(45deg, #222, #966f04b6);
+    }
+    .slide:nth-child(3) {
+      background: linear-gradient(45deg, #222, #045f0ca6);
+    }
+    .slide:nth-child(4) {
+      background: linear-gradient(45deg, #222, #0d248b75);
+    }
+  
+    .button {
+      background: white;
+      color: black;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+   
+    .navigation {
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+   
+    .navigation label {
+      width: 15px;
+      height: 15px;
+      background: rgb(10, 1, 1);
+      border-radius: 50%;
+      margin: 5px;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.3s;
+    }
+    .navigation label:hover {
+      opacity: 1;
+    }
+   
+    #slide1:checked ~ .slides {
+      transform: translateX(0);
+    }
+    #slide2:checked ~ .slides {
+      transform: translateX(-100%);
+    }
+    #slide3:checked ~ .slides {
+      transform: translateX(-200%);
+    }
+    #slide4:checked ~ .slides {
+      transform: translateX(-300%);
+    }
+
+   
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      background-color: #000000;
+      border-radius: 8px;
+      padding: 30px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    }
+    .container h2 {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+ 
+    #registrationForm {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+   
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+   
+    .form-group label {
+      color: #ccc;
+      margin-bottom: 5px;
+      font-size: 16px;
+    }
+ 
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group input[type="password"],
+    .form-group input[type="number"] {
+      padding: 10px;
+      border: 1px solid #444;
+      border-radius: 5px;
+      background-color: #333;
+      color: #fff;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+      display: block;
+    }
+   
+    .form-group input.error {
+      border-color: #a71100;
+    }
+  
+    .error-message {
+      font-size: 14px;
+      color: #a71100;
+      margin-top: 5px;
+      display: none;
+    }
+    
+    .radio-group {
+      display: flex;
+      gap: 15px;
+    }
+    .radio-group label {
+      color: #ccc;
+      font-size: 16px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+    }
+    .checkbox-group input {
+      margin-right: 10px;
+      display: inline-block;
+    }
+    .checkbox-group label {
+      color: #ccc;
+      font-size: 16px;
+    }
+  
+    button[type="submit"] {
+      padding: 12px;
+      background-color: #a71100;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button[type="submit"]:hover {
+      background-color: #3d0600;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header">
+      <h1>Audi Innovation, Performance, Prestige</h1>
+      <p>
+        Audi is a symbol of cutting-edge technology, premium quality, and dynamic
+        performance. With elegant design, advanced Quattro all-wheel drive, and
+        state-of-the-art digital systems, Audi delivers a perfect blend of luxury
+        and driving pleasure. Experience innovation, power, and comfort in every
+        journey.
+      </p>
+    </div>
+  </header>
+
+  <section class="four">
+    <img src="WhatsApp Image 2025-02-14 at 12.42.19.jpeg" alt="" />
+  </section>
+
+  <main>
+    <h1>Pros and Cons of Audi</h1>
+    <section class="section">
+      <div>
+        <h3>Pros</h3>
+        <ul>
+          <li>Premium quality materials and excellent build.</li>
+          <li>Innovative technology like Virtual Cockpit and Matrix LED lights.</li>
+          <li>Quattro all-wheel drive for better traction and stability.</li>
+          <li>Stylish design with modern aesthetics.</li>
+          <li>Powerful engines and smooth handling.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Cons</h3>
+        <ul>
+          <li>High purchase and maintenance costs.</li>
+          <li>Some reliability issues with DSG transmissions and turbo engines.</li>
+          <li>Sport models may have a stiff suspension.</li>
+          <li>Complex electronics make repairs more difficult.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="js">
+      <div class="buttons">
+        <button id="changeMessageBtn">Show SMS</button>
+        <button id="toggleInfoBtn">Show/Hide Info</button>
+      </div>
+      <p id="message">Audi is perfect</p>
+      <div id="extraInfo" style="display: block">
+        <p>You can have one by 18000000 tg</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="change">
+    <button id="changeBackgroundBtn">Change Slider Background</button>
+  </div>
+
+  <div>
+    <div class="slider">
+      <input type="radio" name="slider" id="slide1" checked />
+      <input type="radio" name="slider" id="slide2" />
+      <input type="radio" name="slider" id="slide3" />
+      <input type="radio" name="slider" id="slide4" />
+
+      <div class="slides">
+        <div class="slide">
+          <div class="imgleft">
+            <img
+              src="WhatsApp Image 2025-02-12 at 10.50.12 (1).jpeg"
+              alt=""
+            />
+          </div>
+          <div>
+            <h2>Audi characteristic</h2>
+            <p>
+              The Audi R8 is a high-performance sports car produced by the German
+              automaker Audi. It was first introduced in 2006 and has undergone
+              several updates and generations since then. The R8 is known for its
+              sleek design, powerful engine, and advanced technology, making it one
+              of the most iconic supercars in the world.
+            </p>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="imgleft">
+            <img src="WhatsApp Image 2025-02-12 at 10.50.12.jpeg" alt="" />
+          </div>
+          <div>
+            <h2>Key Specifications (Latest Generation)</h2>
+            <p>
+              - Engine: 5.2-liter V10<br />
+              - Horsepower: 570–620 hp (depending on the version)<br />
+              - Torque: 560–580 Nm<br />
+              - Acceleration (0-100 km/h): 3.1–3.4 seconds<br />
+              - Top Speed: 329 km/h (204 mph)<br />
+              - Transmission: 7-speed S tronic dual-clutch
+            </p>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="imgleft">
+            <img
+              src="WhatsApp Image 2025-02-12 at 10.50.12 (2).jpeg"
+              alt=""
+            />
+          </div>
+          <div>
+            <h2>Comfort and Features</h2>
+            <p>
+              - High-quality materials (leather, Alcantara, carbon fiber)<br />
+              - Advanced infotainment system with Audi Virtual Cockpit<br />
+              - Sports seats with excellent support<br />
+              - Bang & Olufsen premium sound system<br />
+              - Adaptive suspension for a smoother ride
+            </p>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="imgleft">
+            <img src="WhatsApp Image 2025-02-12 at 10.50.11.jpeg" alt="" />
+          </div>
+          <div>
+            <h2>Why is the Audi R8 Special?</h2>
+            <p>
+              - Daily usability – Unlike many supercars, the R8 is designed to be
+              comfortable for everyday driving.<br />
+              - Naturally aspirated V10 – One of the last supercars to have a pure,
+              high-revving V10 engine.<br />
+              - Quattro AWD – Provides excellent traction and handling.<br />
+              - Timeless design – Sharp, aggressive, and aerodynamic.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="navigation">
+        <label for="slide1"></label>
+        <label for="slide2"></label>
+        <label for="slide3"></label>
+        <label for="slide4"></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Do you wanna watch more about Audi? Register now</h2>
+    <form id="registrationForm">
+      <div class="form-group">
+        <label for="firstName">Name:</label>
+        <input type="text" id="firstName" name="firstName" />
+        <div class="error-message">Enter min 2 symbols</div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" />
+        <div class="error-message">Enter min 2 symbols</div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" />
+        <div class="error-message">Enter the right email</div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Номер телефона:</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="+7 (_) _-_-_"
+        />
+        <div class="error-message">Введите номер в формате +7 (XXX) XXX-XX-XX</div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" />
+        <div class="error-message">Min 6 symbols and 1 number</div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm the password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" />
+        <div class="error-message">Passwords don't match</div>
+      </div>
+
+      <div class="form-group">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" />
+        <div class="error-message">Age must be from 18 to 100</div>
+      </div>
+
+      <div class="form-group">
+        <label>Gender:</label>
+        <div class="radio-group">
+          <label
+            ><input
+              type="radio"
+              name="gender"
+              value="male"
+              style="display:inline-block;"
+            />Male</label
+          >
+          <label
+            ><input
+              type="radio"
+              name="gender"
+              value="female"
+              style="display:inline-block;"
+            />Female</label
+          >
+        </div>
+        <div class="error-message">Choose gender</div>
+      </div>
+
+      <div class="form-group checkbox-group">
+        <input
+          type="checkbox"
+          id="terms"
+          name="terms"
+          style="display:inline-block;"
+        />
+        <label for="terms">Agree with the terms</label>
+        <div class="error-message">Need the consent</div>
+      </div>
+
+      <button type="submit">Sign up</button>
+    </form>
+  </div>
+
+  <script>
+   
+    function changeMessage() {
+      var messageElement = document.getElementById("message");
+      messageElement.textContent = "Audi R8 one of the best";
+    }
+
+   
+    function changeSliderBackground() {
+      var colors = ["#b4132b", "#966f04", "#045f0c", "#0d248b"];
+      var slider = document.querySelector(".slider");
+      var newColor = colors[Math.floor(Math.random() * colors.length)];
+      slider.style.backgroundImage = `linear-gradient(45deg, #222, ${newColor})`;
+    }
+
+  
+    function toggleInfo() {
+      var infoElement = document.getElementById("extraInfo");
+      infoElement.style.display =
+        infoElement.style.display === "none" ? "block" : "none";
+    }
+
+    document.getElementById("changeMessageBtn").onclick = changeMessage;
+    document.getElementById("changeBackgroundBtn").onclick = changeSliderBackground;
+    document.getElementById("toggleInfoBtn").onclick = toggleInfo;
+
+   
+    document
+      .getElementById("registrationForm")
+      .addEventListener("submit", function (event) {
+        event.preventDefault(); 
+        let isValid = true;
+
+      
+        document.querySelectorAll(".form-group").forEach((group) => {
+          let input = group.querySelector("input");
+          let error = group.querySelector(".error-message");
+          if (!input || !error) return; 
+
+     
+          if (
+            (input.name === "firstName" || input.name === "lastName") &&
+            input.value.trim().length < 2
+          ) {
+            input.classList.add("error");
+            error.style.display = "block";
+            isValid = false;
+            return;
+          }
+
+          if (input.type === "email") {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(input.value.trim())) {
+              input.classList.add("error");
+              error.style.display = "block";
+              isValid = false;
+              return;
+            }
+          }
+
+          if (input.name === "phone") {
+            const phoneRegex = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
+            if (!phoneRegex.test(input.value)) {
+              input.classList.add("error");
+              error.style.display = "block";
+              isValid = false;
+              return;
+            }
+          }
+
+          if (input.name === "password") {
+            const hasNumber = /\d/;
+            if (
+              input.value.length < 6 ||
+              !hasNumber.test(input.value)
+            ) {
+              input.classList.add("error");
+              error.style.display = "block";
+              isValid = false;
+              return;
+            }
+          }
+
+        
+          if (input.name === "age") {
+            let ageVal = parseInt(input.value, 10);
+            if (isNaN(ageVal) || ageVal < 18 || ageVal > 100) {
+              input.classList.add("error");
+              error.style.display = "block";
+              isValid = false;
+              return;
+            }
+          }
+
+          if (
+            input.type !== "radio" &&
+            input.type !== "checkbox" &&
+            input.value.trim() === ""
+          ) {
+            input.classList.add("error");
+            error.style.display = "block";
+            isValid = false;
+            return;
+          }
+
+          input.classList.remove("error");
+          error.style.display = "none";
+        });
+
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+        if (password !== confirmPassword) {
+          let group = document.getElementById("confirmPassword").parentElement;
+          let error = group.querySelector(".error-message");
+          document.getElementById("confirmPassword").classList.add("error");
+          error.style.display = "block";
+          isValid = false;
+        }
+
+
+        const maleRadio = document.querySelector('input[name="gender"][value="male"]');
+        const femaleRadio = document.querySelector('input[name="gender"][value="female"]');
+        if (!maleRadio.checked && !femaleRadio.checked) {
+          let genderGroup = maleRadio.closest(".form-group");
+          let genderError = genderGroup.querySelector(".error-message");
+          genderError.style.display = "block";
+          isValid = false;
+        }
+
+        const termsCheckbox = document.getElementById("terms");
+        if (!termsCheckbox.checked) {
+          let termsGroup = termsCheckbox.closest(".form-group");
+          let termsError = termsGroup.querySelector(".error-message");
+          termsError.style.display = "block";
+          isValid = false;
+        }
+
+  
+        if (isValid) {
+          alert("Регистрация успешна!");
+          document.getElementById("registrationForm").reset();
+        }
+      });
+
+ 
+    const phoneInput = document.getElementById("phone");
+    phoneInput.addEventListener("input", function () {
+
+      let value = phoneInput.value.replace(/\D/g, "");
+
+ 
+      if (value.startsWith("7")) {
+        value = value.substring(1);
+      }
+
+      let formattedValue = "+7 ";
+
+      if (value.length > 0) {
+        formattedValue += "(" + value.substring(0, 3);
+      }
+      if (value.length >= 3) {
+        formattedValue += ") " + value.substring(3, 6);
+      }
+      if (value.length >= 6) {
+        formattedValue += "-" + value.substring(6, 8);
+      }
+      if (value.length >= 8) {
+        formattedValue += "-" + value.substring(8, 10);
+      }
+
+      phoneInput.value = formattedValue;
+    });
+  </script>
+</body>
+</html>
