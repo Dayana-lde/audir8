@@ -1,0 +1,332 @@
+
+@media (max-width: 768px) {
+    .header {
+      height: 50vh;
+    }
+    .four img {
+      height: 300px;
+    }
+    main {
+      position: relative;
+      height: 30vh; 
+      background-size: 50px;
+      font-size: small; 
+    }
+    section {
+      position: relative;
+      display: flex;
+      justify-content: center; 
+      flex-direction: row;
+      margin: 0;
+    }
+    .slider {
+      height: 50vh;
+    }
+    .slide img {
+      position: relative;
+      width: 100%;
+      height: auto;
+      left: 40px;
+    }
+    .text {
+      font-size: 1.5rem;
+    }
+    .slide h2,
+    .slide p {
+      position: relative;
+      display: inline;
+      font-size: x-small;
+      padding: 30px;
+      gap: 0px;
+    }
+    .navigation {
+      bottom: 10px;
+    }
+  }
+
+  * {
+    font-family: "Times New Roman", Times, serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  nav {
+    text-align: center;
+    font-size: large;
+  }
+  header {
+    background-image: url("dark.jpg");
+  }
+  .header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    color: white;
+  }
+  h1,
+  p {
+    margin: 0 auto;
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+  }
+  .four img {
+    position: relative;
+    width: 100%;
+    height: 700px;
+    border: 20px black solid;
+  }
+  .section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    font-size: large;
+    background-color: black;
+    color: white;
+    width: 100%;
+    height: 50vh;
+    padding: 20px;
+  }
+  .js {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 30vh;
+    background-color: black;
+    color: white;
+  }
+  .buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+  #message {
+    margin-top: 10px;
+    font-size: 1.2rem;
+  }
+  .change #changeBackgroundBtn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: black; 
+    color: white; 
+    border: none;
+    cursor: pointer;
+  }
+  .text {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .slider {
+    font-family: Arial, sans-serif;
+    background: #222;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+ 
+  .slider input[type="radio"] {
+    display: none;
+  }
+
+  .slides {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+  }
+ 
+  .slide {
+    flex: 1 0 100%;
+    min-width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    color: white;
+    font-size: 25px;
+    padding: 10px;
+    gap: 25px;
+    text-shadow: 2px 2px 5px black;
+  }
+  .slide p {
+    gap: 10px;
+    max-width: 700px;
+  }
+  .imgleft {
+    position: relative;
+    float: left;
+    right: 50px;
+  }
+  .slide img {
+    border: 10px black solid;
+    width: 150%;
+    height: 200%;
+  }
+ 
+  .slide:nth-child(1) {
+    background: linear-gradient(45deg, #222, #b4132bbd);
+  }
+  .slide:nth-child(2) {
+    background: linear-gradient(45deg, #222, #966f04b6);
+  }
+  .slide:nth-child(3) {
+    background: linear-gradient(45deg, #222, #045f0ca6);
+  }
+  .slide:nth-child(4) {
+    background: linear-gradient(45deg, #222, #0d248b75);
+  }
+
+  .button {
+    background: white;
+    color: black;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+ 
+  .navigation {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+ 
+  .navigation label {
+    width: 15px;
+    height: 15px;
+    background: rgb(10, 1, 1);
+    border-radius: 50%;
+    margin: 5px;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+  }
+  .navigation label:hover {
+    opacity: 1;
+  }
+ 
+  #slide1:checked ~ .slides {
+    transform: translateX(0);
+  }
+  #slide2:checked ~ .slides {
+    transform: translateX(-100%);
+  }
+  #slide3:checked ~ .slides {
+    transform: translateX(-200%);
+  }
+  #slide4:checked ~ .slides {
+    transform: translateX(-300%);
+  }
+
+ 
+  .container {
+    max-width: 500px;
+    margin: 50px auto;
+    background-color: #000000;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  }
+  .container h2 {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+  }
+
+  #registrationForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+ 
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+ 
+  .form-group label {
+    color: #ccc;
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="tel"],
+  .form-group input[type="password"],
+  .form-group input[type="number"] {
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    display: block;
+  }
+ 
+  .form-group input.error {
+    border-color: #a71100;
+  }
+
+  .error-message {
+    font-size: 14px;
+    color: #a71100;
+    margin-top: 5px;
+    display: none;
+  }
+  
+  .radio-group {
+    display: flex;
+    gap: 15px;
+  }
+  .radio-group label {
+    color: #ccc;
+    font-size: 16px;
+  }
+
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+  }
+  .checkbox-group input {
+    margin-right: 10px;
+    display: inline-block;
+  }
+  .checkbox-group label {
+    color: #ccc;
+    font-size: 16px;
+  }
+
+  button[type="submit"] {
+    padding: 12px;
+    background-color: #a71100;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button[type="submit"]:hover {
+    background-color: #3d0600;
+  }
